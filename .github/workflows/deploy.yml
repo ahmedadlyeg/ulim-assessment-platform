@@ -27,11 +27,10 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install dependencies
-        run: npm install
-
+       - name: Install dependencies
+        run: npm install --legacy-peer-deps
       - name: Install missing libraries
-        run: npm install recharts framer-motion react-router
+        run: npm install recharts framer-motion react-router react-router-dom --legacy-peer-deps
 
       - name: Build project
         run: npm run build
