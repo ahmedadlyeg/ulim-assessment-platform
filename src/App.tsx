@@ -6,10 +6,15 @@ import { CommandPalette } from '@/components/shared/CommandPalette';
 import { ModalRenderer } from '@/components/shared/ModalRenderer';
 import { Dashboard } from '@/pages/Dashboard';
 import { AssessmentList } from '@/pages/AssessmentList';
+import { TemplatesPage } from '@/pages/TemplatesPage';
 import { TemplateBuilder } from '@/pages/TemplateBuilder';
 import { EventDetail } from '@/pages/EventDetail';
 import { Questionnaire } from '@/pages/Questionnaire';
+import { QuestionBankPage } from '@/pages/QuestionBankPage';
+import { ResultsPage } from '@/pages/ResultsPage';
 import { RecommendationsPage } from '@/pages/RecommendationsPage';
+import { TasksPage } from '@/pages/TasksPage';
+import { AnalyticsPage } from '@/pages/AnalyticsPage';
 import { Settings } from '@/pages/Settings';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -21,10 +26,15 @@ function AppContent() {
     switch (ui.currentPage) {
       case 'dashboard': return <Dashboard />;
       case 'assessments': return <AssessmentList />;
+      case 'templates': return <TemplatesPage />;
       case 'template-builder': return <TemplateBuilder />;
       case 'event-detail': return <EventDetail />;
       case 'questionnaire': return <Questionnaire />;
+      case 'question-bank': return <QuestionBankPage />;
+      case 'results': return <ResultsPage />;
       case 'recommendations': return <RecommendationsPage />;
+      case 'tasks': return <TasksPage />;
+      case 'analytics': return <AnalyticsPage />;
       case 'settings': return <Settings />;
       default: return <Dashboard />;
     }

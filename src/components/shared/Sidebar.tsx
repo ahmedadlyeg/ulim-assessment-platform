@@ -11,12 +11,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 const primaryNav = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, page: 'dashboard' as const },
   { id: 'assessments', label: 'Assessments', icon: ClipboardList, page: 'assessments' as const },
-  { id: 'templates', label: 'Templates', icon: FileText, page: 'assessments' as const },
-  { id: 'question-bank', label: 'Question Bank', icon: Database, page: 'assessments' as const },
-  { id: 'results', label: 'Results', icon: PieChart, page: 'assessments' as const },
+  { id: 'templates', label: 'Templates', icon: FileText, page: 'templates' as const },
+  { id: 'question-bank', label: 'Question Bank', icon: Database, page: 'question-bank' as const },
+  { id: 'results', label: 'Results', icon: PieChart, page: 'results' as const },
   { id: 'recommendations', label: 'Recommendations', icon: Lightbulb, page: 'recommendations' as const },
-  { id: 'tasks', label: 'Tasks', icon: CheckSquare, page: 'recommendations' as const },
-  { id: 'analytics', label: 'Analytics', icon: TrendingUp, page: 'dashboard' as const },
+  { id: 'tasks', label: 'Tasks', icon: CheckSquare, page: 'tasks' as const },
+  { id: 'analytics', label: 'Analytics', icon: TrendingUp, page: 'analytics' as const },
   { id: 'settings', label: 'Settings', icon: Settings, page: 'settings' as const },
 ];
 
@@ -31,19 +31,18 @@ export function Sidebar() {
     );
   };
 
-  const isActive = (page: string) => ui.currentPage === page;
+  const isActive = (item: typeof primaryNav[0]) => ui.currentPage === item.page;
 
   return (
     <aside
       className="h-full bg-[#0F172A] flex flex-col transition-all duration-250"
       style={{ width: ui.sidebarCollapsed ? 68 : 260 }}
     >
-      {/* Header */}
       <div className="h-14 flex items-center px-4 border-b border-[#334155]">
         <div className="flex items-center gap-3 min-w-0">
           <div className="w-4 h-4 bg-[#2563EB] rotate-45 flex-shrink-0" />
           {!ui.sidebarCollapsed && (
-            <span className="font-display text-[22px] font-semibold text-[#F1F5F9] truncate">Ulim</span>
+            <span className="text-[22px] font-semibold text-[#F1F5F9] truncate">Ulim</span>
           )}
         </div>
         <button onClick={toggleSidebar} className="ml-auto p-1.5 rounded-lg text-[#94A3B8] hover:bg-[#1E293B] hover:text-[#F1F5F9] transition-colors flex-shrink-0">
@@ -58,13 +57,18 @@ export function Sidebar() {
         </div>
       )}
 
-      <nav className="flex-1 overflow-y-auto scrollbar-thin py-2">
+      <nav className="flex-1 overflow-y-auto py-2">
         {primaryNav.map(item => (
-          <button key={item.id} onClick={() => navigate(item.page)} className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors relative ${
-            isActive(item.page) && item.id === (ui.currentPage === 'recommendations' ? 'recommendations' : ui.currentPage === 'settings' ? 'settings' : ui.currentPage)
-              ? 'bg-[#334155] text-[#F1F5F9]' : 'text-[#94A3B8] hover:bg-[#1E293B] hover:text-[#F1F5F9]'
-          }`}>
-            {isActive(item.page) && (
+          <button
+            key={item.id}
+            onClick={() => navigate(item.page)}
+            className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors relative ${
+              isActive(item)
+                ? 'bg-[#334155] text-[#F1F5F9]'
+                : 'text-[#94A3B8] hover:bg-[#1E293B] hover:text-[#F1F5F9]'
+            }`}
+          >
+            {isActive(item) && (
               <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2563EB]" />
             )}
             <item.icon size={20} className="flex-shrink-0" />

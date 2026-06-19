@@ -201,13 +201,18 @@ export interface ActivityLog {
   createdAt: string;
 }
 
-export type PageType = 
-  | 'dashboard' 
-  | 'assessments' 
-  | 'template-builder' 
-  | 'event-detail' 
-  | 'questionnaire' 
-  | 'recommendations' 
+export type PageType =
+  | 'dashboard'
+  | 'assessments'
+  | 'templates'
+  | 'template-builder'
+  | 'event-detail'
+  | 'questionnaire'
+  | 'question-bank'
+  | 'results'
+  | 'recommendations'
+  | 'tasks'
+  | 'analytics'
   | 'settings';
 
 export interface AppState {
