@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-   branches: [ main ]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -28,10 +28,13 @@ jobs:
           node-version: 20
 
       - name: Install dependencies and required libraries
-        run: npm install vite@5.4.11 typescript @types/node @vitejs/plugin-react recharts framer-motion react-router react-router-dom --legacy-peer-deps --no-audit --no-fund
-        
+        run: |
+          npm install --legacy-peer-deps --no-audit --no-fund
+          npm install --save-dev vite@5.4.11 typescript @types/node @vitejs/plugin-react --legacy-peer-deps --no-audit --no-fund
+          npm install recharts framer-motion react-router react-router-dom --legacy-peer-deps --no-audit --no-fund
+
       - name: Build project
-        run: npm exec --package=vite@5.4.11 -- vite build
+        run: ./node_modules/.bin/vite build
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
