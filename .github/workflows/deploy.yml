@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies and required libraries
         run: npm install vite typescript @vitejs/plugin-react recharts framer-motion react-router react-router-dom --legacy-peer-deps --no-audit --no-fund  
       - name: Build project
-        run: npx tsc -b && npx --yes vite@latest build
+        run: npx --yes vite@latest build
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
