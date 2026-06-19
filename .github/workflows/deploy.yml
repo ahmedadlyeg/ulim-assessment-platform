@@ -28,7 +28,8 @@ jobs:
           node-version: 20
 
       - name: Install dependencies and required libraries
-        run: npm install vite typescript @vitejs/plugin-react recharts framer-motion react-router react-router-dom --legacy-peer-deps --no-audit --no-fund  
+        run: npm install vite@5.4.11 typescript @types/node @vitejs/plugin-react recharts framer-motion react-router react-router-dom --legacy-peer-deps --no-audit --no-fund
+        
       - name: Build project
         run: npx --yes vite@5.4.11 build        
 
